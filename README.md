@@ -2,8 +2,6 @@
 
 Static documentation for [cpy](https://github.com/MoonLite-Br/Cpy).
 
-No images — text UI only. One shared CSS file.
-
 | Page | File |
 |------|------|
 | Home | `index.html` |
