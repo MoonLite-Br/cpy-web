@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cpy - Limits & Constraints</title>
-  <link rel="stylesheet" href="css/site.css">
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Limits · cpy</title>
+  <meta name="description" content="cpy — Python syntax, C speed."/>
+  <link rel="stylesheet" href="css/site.css"/>
 </head>
 <body>
   <header class="top">
     <div class="top-inner">
-      <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" width="28" height="28"/>cpy</a>
+      <a class="brand" href="index.html">c<span>py</span></a>
       <nav class="nav">
         <a href="index.html">Home</a>
         <a href="start.html">Start</a>
@@ -24,99 +24,39 @@
       </nav>
     </div>
   </header>
-
   <main class="wrap">
-    <section class="hero">
-      <span class="tag">v1.11.0</span>
-      <h1>cpy Known Limits</h1>
-      <p>Python syntax with C speed. cpy achieves native performance by removing dynamic overhead and focusing on lightweight, statically determinable language features.</p>
-      <div class="btns">
-        <a href="get.html" class="btn btn-primary">Get cpy v1.11.0</a>
-        <a href="start.html" class="btn btn-ghost">Quickstart Guide</a>
-      </div>
-    </section>
+    <h1>Limits</h1>
+    <p class="lead">Where cpy intentionally differs from CPython.</p>
 
-    <div class="warn">
-      <strong>Environment Requirements:</strong> Building cpy code requires <code>clang</code>, <code>make</code>, and <code>openssl</code> (works out of the box on desktop Linux/macOS and Android Termux via <code>install.sh</code>).
-    </div>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Area</th><th>cpy</th></tr>
+    <tr><td><code>int</code></td><td>64-bit only; no bigint</td></tr>
+    <tr><td>Bytes</td><td>No <code>bytes</code> / <code>bytearray</code></td></tr>
+    <tr><td>Numbers</td><td>No <code>complex</code></td></tr>
+    <tr><td>Syntax</td><td>No <code>match</code> / <code>case</code></td></tr>
+    <tr><td>Objects</td><td>No <code>__slots__</code>; limited metaclasses</td></tr>
+    <tr><td>Concurrency</td><td>Cooperative <code>async</code> only</td></tr>
+  </table>
+  </div>
 
-    <section>
-      <h2>Language Scope & Technical Limits</h2>
-      <p>To deliver raw execution speeds without runtime bloat, cpy deliberately omits certain features present in CPython. Execution can target native machine code or run through an optional VM interpreter.</p>
+  <div class="note warn">Large CPython ecosystems (native extensions, full stdlib, packaging tools) are out of scope.</div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Feature Area</th>
-            <th>cpy Limit</th>
-            <th>Description & Context</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Integers</strong></td>
-            <td>64-bit int</td>
-            <td>Primitive <code>int64</code> representation for zero-overhead arithmetic instead of arbitrary-precision big integers.</td>
-          </tr>
-          <tr>
-            <td><strong>Bytes Type</strong></td>
-            <td>No <code>bytes</code></td>
-            <td>Raw byte handling relies on standard string/array primitives.</td>
-          </tr>
-          <tr>
-            <td><strong>Complex Numbers</strong></td>
-            <td>No <code>complex</code></td>
-            <td>Built-in complex number mathematical operations are omitted.</td>
-          </tr>
-          <tr>
-            <td><strong>Pattern Matching</strong></td>
-            <td>No <code>match</code></td>
-            <td>Structural pattern matching is not supported; standard conditional branching is used instead.</td>
-          </tr>
-          <tr>
-            <td><strong>Class Attributes</strong></td>
-            <td>No <code>__slots__</code></td>
-            <td>Classes are natively structured without explicit dynamic slot definitions.</td>
-          </tr>
-          <tr>
-            <td><strong>Concurrency</strong></td>
-            <td>Cooperative async only</td>
-            <td>Single-threaded, event-driven cooperative async without OS-level thread preemption.</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+  <h2>Good fit</h2>
+  <ul>
+    <li>Small tools as one binary</li>
+    <li>Termux / limited environments</li>
+    <li>Reading a small interpreter codebase</li>
+  </ul>
 
-    <div class="note">
-      <strong>Note on Execution:</strong> You can run scripts instantly using the optional VM or compile directly down to C binaries for max performance.
-    </div>
-
-    <section>
-      <h2>When to Use cpy</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>When to Use cpy</h3>
-          <ul>
-            <li>High-performance utilities where Python syntax and C speed are required.</li>
-            <li>Embedded devices or Android Termux environments needing small binaries with <code>clang</code> and <code>openssl</code>.</li>
-            <li>Event-driven, cooperative async network services and microservices.</li>
-            <li>Standalone tools deployed via a simple shell installation script (<code>install.sh</code>).</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>When NOT to Use cpy</h3>
-          <ul>
-            <li>Scientific computing requiring <code>complex</code> numbers or arbitrary-precision integers beyond 64-bit.</li>
-            <li>Heavy reliance on CPython third-party modules that require full byte-buffer manipulations or <code>match</code> syntax.</li>
-            <li>Applications dependent on pre-emptive multithreading instead of cooperative async loops.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <footer>
+      <span>cpy 1.11.0 · MIT</span>
+      <span>
+        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a>
+        ·
+        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      </span>
+    </footer>
   </main>
-
-  <footer>
-    <p>cpy 1.11.0 · MIT · <a href="https://github.com" target="_blank" rel="noopener">GitHub</a></p>
-  </footer>
 </body>
 </html>

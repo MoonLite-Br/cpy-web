@@ -1,81 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Machine - cpy</title>
-    <link rel="stylesheet" href="css/site.css">
-    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>VM · cpy</title>
+  <meta name="description" content="cpy — Python syntax, C speed."/>
+  <link rel="stylesheet" href="css/site.css"/>
 </head>
 <body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="index.html">c<span>py</span></a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="start.html">Start</a>
+        <a href="lang.html">Lang</a>
+        <a href="lib.html">Lib</a>
+        <a href="how.html">How</a>
+        <a href="vm.html" class="active">VM</a>
+        <a href="lim.html">Limits</a>
+        <a href="try.html">Examples</a>
+        <a href="get.html">Get</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1>VM</h1>
+    <p class="lead">Optional bytecode tier next to the tree-walker.</p>
 
-    <header class="top">
-        <div class="top-inner">
-            <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" width="28" height="28"/>cpy</a>
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a href="start.html">Start</a>
-                <a href="lang.html">Lang</a>
-                <a href="lib.html">Lib</a>
-                <a href="how.html">How</a>
-                <a href="vm.html" class="active">VM</a>
-                <a href="lim.html">Limits</a>
-                <a href="try.html">Examples</a>
-                <a href="get.html">Get</a>
-            </nav>
-        </div>
-    </header>
+  <h2>Two engines</h2>
+  <p>cpy always has a tree-walker. A register-style bytecode VM can run eligible functions. The test suite checks that both agree.</p>
+  <pre><code>cpy script.cpy           # VM allowed
+cpy --no-vm script.cpy   # tree-walker only
+CPY_NOVM=1 cpy script.cpy</code></pre>
 
-    <main class="wrap">
-        <section class="hero">
-            <span class="tag">Execution Engine</span>
-            <h1>cpy Virtual Machine & Evaluation</h1>
-            <p>Combine Python syntax with high C speed. Choose between light startup and compiled bytecode execution.</p>
-            <div class="btns">
-                <a href="get.html" class="btn btn-primary">Install v1.11.0</a>
-                <a href="try.html" class="btn btn-ghost">Try Examples</a>
-            </div>
-        </section>
+  <h2>Why</h2>
+  <p>Dense arithmetic and tight loops avoid walking AST nodes every step, while sharing the same values, exceptions, and tracebacks.</p>
 
-        <div class="card-grid">
-            <div class="card">
-                <span class="tag">Default</span>
-                <h2>Tree-Walker Interpreter</h2>
-                <p>By default, cpy uses a fast AST tree-walker execution model. It offers immediate startup, zero byte-compilation overhead, and seamless integration with native C data structures.</p>
-            </div>
-
-            <div class="card">
-                <span class="tag">Optional</span>
-                <h2>Bytecode VM Engine</h2>
-                <p>For compute-heavy tasks, an optional bytecode VM engine is available. It converts expressions into optimized instructions to leverage 64-bit int performance and raw speed.</p>
-            </div>
-
-            <div class="card">
-                <span class="tag">Verification</span>
-                <h2>Dual-Engine Tests</h2>
-                <p>Correctness is prioritized. Test suites automatically run against both engines, comparing execution results between the tree-walker and the VM to ensure identical behavior.</p>
-            </div>
-        </div>
-
-        <div class="note">
-            <h3>Disabling the VM Architecture</h3>
-            <p>If you want a minimal footprint, you can completely strip the bytecode VM during build time. Run <code>install.sh --no-vm</code> or define <code>CPY_NOVM</code> during C compilation.</p>
-        </div>
-
-        <div class="warn">
-            <h3>Language Engine Scope</h3>
-            <p>Regardless of the active engine (tree-walker or bytecode VM), cpy sticks strictly to lightweight primitives with 64-bit int precision. Features like <code>bytes</code> and <code>match</code> statements are deliberately omitted.</p>
-        </div>
-
-        <div class="card">
-            <h2>Building on Minimal Systems</h2>
-            <p>cpy v1.11.0 compiles anywhere with standard C tooling, including Termux using <code>clang</code>, <code>make</code>, and <code>openssl</code> support.</p>
-        </div>
-    </main>
+  <div class="note">If tree-walk and VM ever disagree on a program, that is a bug — please report it.</div>
 
     <footer>
-        <p>cpy 1.11.0 · MIT · <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub Repository</a></p>
+      <span>cpy 1.11.0 · MIT</span>
+      <span>
+        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a>
+        ·
+        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      </span>
     </footer>
-
+  </main>
 </body>
 </html>

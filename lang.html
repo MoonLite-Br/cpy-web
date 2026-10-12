@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Language Reference - cpy 1.11.0</title>
-  <link rel="stylesheet" href="css/site.css">
-  <link rel="icon" href="assets/logo.svg">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Lang · cpy</title>
+  <meta name="description" content="cpy — Python syntax, C speed."/>
+  <link rel="stylesheet" href="css/site.css"/>
 </head>
 <body>
   <header class="top">
     <div class="top-inner">
-      <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" width="28" height="28"/>cpy</a>
+      <a class="brand" href="index.html">c<span>py</span></a>
       <nav class="nav">
         <a href="index.html">Home</a>
         <a href="start.html">Start</a>
@@ -24,141 +24,52 @@
       </nav>
     </div>
   </header>
-
   <main class="wrap">
-    <section class="hero">
-      <span class="tag">Language Specification</span>
-      <h1>cpy Language Reference</h1>
-      <p>Python syntax with C speed. Fast execution backed by tree-walk parsing and bytecode VM execution.</p>
-    </section>
+    <h1>Lang</h1>
+    <p class="lead">Practical Python subset that cpy runs.</p>
 
-    <div class="card-grid">
-      <div class="card">
-        <h2>Data Types Overview</h2>
-        <p>cpy implements a streamlined core set of built-in Python data types optimized for high performance.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Description</th>
-              <th>Example</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>int</code></td>
-              <td>64-bit signed integer</td>
-              <td><code>42</code>, <code>-100</code></td>
-            </tr>
-            <tr>
-              <td><code>float</code></td>
-              <td>64-bit double precision float</td>
-              <td><code>3.14159</code></td>
-            </tr>
-            <tr>
-              <td><code>bool</code></td>
-              <td>Boolean logical values</td>
-              <td><code>True</code>, <code>False</code></td>
-            </tr>
-            <tr>
-              <td><code>str</code></td>
-              <td>UTF-8 encoded string</td>
-              <td><code>"hello"</code></td>
-            </tr>
-            <tr>
-              <td><code>list</code></td>
-              <td>Dynamic mutable sequence</td>
-              <td><code>[1, 2, 3]</code></td>
-            </tr>
-            <tr>
-              <td><code>dict</code></td>
-              <td>Key-value mapping</td>
-              <td><code>{"a": 1}</code></td>
-            </tr>
-            <tr>
-              <td><code>tuple</code></td>
-              <td>Immutable sequence</td>
-              <td><code>(1, 2)</code></td>
-            </tr>
-            <tr>
-              <td><code>set</code></td>
-              <td>Unordered collection of unique items</td>
-              <td><code>{1, 2, 3}</code></td>
-            </tr>
-            <tr>
-              <td><code>NoneType</code></td>
-              <td>Absence of value</td>
-              <td><code>None</code></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <h2>Basics</h2>
+  <ul>
+    <li>Indentation defines blocks. Comments start with <code>#</code>.</li>
+    <li>Files: <code>.cpy</code> or <code>.py</code>, UTF-8.</li>
+    <li>Numbers: <code>42</code>, <code>0x1F</code>, <code>3.14</code>, <code>1e-3</code>.</li>
+    <li>Strings: quotes, f-strings, raw strings.</li>
+  </ul>
 
-      <div class="card">
-        <h2>Language Syntax &amp; Constructs</h2>
-        <p>cpy retains clean, clean-bracket, Python-compliant syntax for ease of adoption and maximum readability.</p>
-        <ul>
-          <li><strong>Control Flow:</strong> Standard <code>if</code>, <code>elif</code>, <code>else</code>, <code>while</code>, and <code>for</code> loops over iterables.</li>
-          <li><strong>Functions:</strong> Standard <code>def</code> function definitions with positional and keyword argument support.</li>
-          <li><strong>Error Handling:</strong> Structured <code>try</code>, <code>except</code>, and <code>finally</code> blocks for exception safety.</li>
-          <li><strong>Modules &amp; Scope:</strong> Lexical scoping with <code>global</code> and <code>nonlocal</code> keyword support.</li>
-        </ul>
-      </div>
-    </div>
+  <h2>Types</h2>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Type</th><th>Notes</th></tr>
+    <tr><td><code>int</code></td><td>Signed 64-bit; overflow raises</td></tr>
+    <tr><td><code>float</code></td><td>IEEE double</td></tr>
+    <tr><td><code>bool</code></td><td><code>True</code> / <code>False</code></td></tr>
+    <tr><td><code>str</code></td><td>Immutable UTF-8</td></tr>
+    <tr><td><code>list</code> / <code>tuple</code></td><td>Ordered sequences</td></tr>
+    <tr><td><code>dict</code></td><td>Insertion-ordered</td></tr>
+    <tr><td><code>set</code> / <code>frozenset</code></td><td>Hash sets</td></tr>
+    <tr><td><code>range</code></td><td>Lazy sequence</td></tr>
+  </table>
+  </div>
 
-    <div class="warn">
-      <h3>Unsupported Syntax &amp; Types</h3>
-      <p>To preserve lightweight execution and high execution speed, cpy does <strong>not</strong> include support for <code>bytes</code>, <code>complex</code> numbers, or structural pattern matching (<code>match/case</code>).</p>
-    </div>
-
-    <div class="card-grid">
-      <div class="card">
-        <h2>Classes &amp; Object Model</h2>
-        <p>Object-oriented programming in cpy supports dynamic class instantiation and inheritance.</p>
-        <ul>
-          <li><strong>C3 MRO:</strong> Method resolution order uses standard C3 Linearization to guarantee consistent multiple inheritance lookups.</li>
-          <li><strong>Method Cache:</strong> Internal C-level method caching minimizes runtime lookup overhead for object method calls.</li>
-          <li><strong>Dunder Methods:</strong> Standard <code>__init__</code>, <code>__str__</code>, <code>__repr__</code>, and arithmetic operator overrides.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>Generators &amp; Async Execution</h2>
-        <p>cpy features built-in generator functions and non-blocking asynchronous primitives.</p>
-        <ul>
-          <li><strong>Generators:</strong> Dynamic stateful iteration via <code>yield</code> statements.</li>
-          <li><strong>Cooperative Async:</strong> Lightweight asynchronous tasks utilizing <code>async def</code> syntax and standard <code>await</code> expressions.</li>
-          <li><strong>Single-Threaded Event Loop:</strong> Efficient cooperative multitasking built into the execution engine.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card-grid">
-      <div class="card">
-        <h2>Module &amp; Import System</h2>
-        <p>cpy uses a standard file-based module system to organize libraries and applications into reusable units.</p>
-        <p>Imports are resolved relative to the entry point file and standard library path:</p>
-        <pre><code>import math
-from os import path
-import custom_module as mod</code></pre>
-      </div>
-
-      <div class="card">
-        <h2>Execution Pipeline</h2>
-        <p>Code evaluation combines standard tree-walk parsing for AST construction and an internal register-based virtual machine for fast execution.</p>
-        <div class="btns">
-          <a class="btn btn-primary" href="vm.html">Read VM Details</a>
-          <a class="btn btn-ghost" href="try.html">See Code Examples</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="note">
-      <p>cpy 1.11.0 provides absolute syntax fidelity with mainstream Python while discarding legacy overhead to hit bare-metal C execution performance.</p>
-    </div>
+  <h2>Language features</h2>
+  <ul>
+    <li><code>if / while / for</code>, <code>try / except / finally</code>, <code>with</code></li>
+    <li><code>def</code>, <code>lambda</code>, <code>*args</code>, <code>**kwargs</code></li>
+    <li>Classes, multiple inheritance, C3 MRO</li>
+    <li><code>@decorator</code>, <code>@property</code>, static / class methods</li>
+    <li>Generators: <code>yield</code>, <code>yield from</code></li>
+    <li>Comprehensions, walrus <code>:=</code></li>
+    <li><code>async</code> / <code>await</code> (cooperative)</li>
+    <li><code>import</code> / <code>from</code> (relative imports too)</li>
+  </ul>
 
     <footer>
-      cpy 1.11.0 · MIT · <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> · <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      <span>cpy 1.11.0 · MIT</span>
+      <span>
+        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a>
+        ·
+        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      </span>
     </footer>
   </main>
 </body>
