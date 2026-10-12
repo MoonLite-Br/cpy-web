@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Start · cpy</title>
-  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
-  <link rel="stylesheet" href="css/site.css"/>
-  <link rel="icon" href="assets/logo.svg"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started - Cpy</title>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 </head>
 <body>
+
   <header class="top">
     <div class="top-inner">
       <a class="brand" href="index.html">
-        <img src="assets/logo.svg" alt=""/>
-        cpy
+        <img src="assets/logo.svg" alt=""/>cpy
       </a>
       <nav class="nav">
         <a href="index.html">Home</a>
@@ -28,69 +27,110 @@
       </nav>
     </div>
   </header>
+
   <main class="wrap">
-    <h1>Start</h1>
-    <p class="lead">Install cpy and run your first script.</p>
-    
-<h2>Requirements</h2>
-<ul>
-  <li>A C compiler (<code>clang</code> or <code>gcc</code>) and <code>make</code></li>
-  <li>Optional: OpenSSL headers for <code>https://</code> in <code>urllib</code></li>
-</ul>
+    <div class="hero">
+      <span class="tag">v1.11.0</span>
+      <h1>Getting Started</h1>
+      <p>Install Cpy and execute your first scripts on Linux, Termux, and Debian systems.</p>
+      <div class="btns">
+        <a class="btn btn-primary" href="#installation">Installation</a>
+        <a class="btn btn-ghost" href="#cli">CLI Options</a>
+      </div>
+    </div>
 
-<h2>Linux / macOS</h2>
-<pre><code># Debian/Ubuntu
-sudo apt install build-essential libssl-dev
+    <section id="installation">
+      <h2>Installation</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Linux (Build from Source)</h3>
+          <p>Clone the repository and execute the automated installation script:</p>
+          <pre><code>git clone https://github.com/MoonLite-Br/Cpy.git
+cd Cpy
+./install.sh</code></pre>
+        </div>
 
+        <div class="card">
+          <h3>Termux (Android)</h3>
+          <p>Install required build tools and dependencies before running the installer:</p>
+          <pre><code>pkg install clang make openssl
 git clone https://github.com/MoonLite-Br/Cpy.git
 cd Cpy
-./install.sh          # builds and puts cpy on PATH
-# or: make && ./bin/cpy
-</code></pre>
+./install.sh</code></pre>
+        </div>
 
-<h2>Termux (Android)</h2>
-<pre><code>pkg install clang make openssl
-git clone https://github.com/MoonLite-Br/Cpy.git
-cd Cpy
-./install.sh
-</code></pre>
+        <div class="card">
+          <h3>Prebuilt Debian Package (.deb)</h3>
+          <p>Download the official <code>.deb</code> package or prebuilt binary directly from the releases page and install via package manager:</p>
+          <pre><code>sudo dpkg -i cpy_1.11.0_amd64.deb</code></pre>
+        </div>
+      </div>
+    </section>
 
-<h2>Debian package</h2>
-<pre><code># from GitHub Releases (amd64)
-sudo dpkg -i cpy_1.11.0-1_amd64.deb
+    <div class="note">
+      <p><strong>Note:</strong> Standalone binaries and Debian release packages for v1.11.0 are hostable and downloadable directly from GitHub Releases.</p>
+    </div>
 
-# or build locally
-./scripts/build-deb.sh 1.11.0
-sudo dpkg -i build/cpy_*.deb
-</code></pre>
+    <section id="first-commands">
+      <h2>First Commands</h2>
+      <p>Write your first Cpy script and execute it using the CLI interpreter.</p>
 
-<h2>First commands</h2>
-<pre><code>cpy                     # REPL
-cpy script.cpy          # run a file (.cpy or .py)
-cpy -c 'print(1 + 2)'
-cpy --version
-</code></pre>
+      <div class="card">
+        <h3>Creating a Script</h3>
+        <p>Save the following content as <code>hello.cpy</code>:</p>
+        <pre><code>def main():
+    print("Hello, Cpy!")
 
-<div class="note">
-  Module search path: set <code>CPY_PATH=dir1:dir2</code>. Force tree-walker only with <code>--no-vm</code> or <code>CPY_NOVM=1</code>.
-</div>
+main()</code></pre>
+        <p>Run the script directly from your terminal:</p>
+        <pre><code>cpy hello.cpy</code></pre>
+      </div>
+    </section>
 
-<h2>CLI flags</h2>
-<table>
-  <tr><th>Flag</th><th>Meaning</th></tr>
-  <tr><td><code>-c CODE</code></td><td>Run CODE and exit</td></tr>
-  <tr><td><code>-i</code></td><td>Force REPL</td></tr>
-  <tr><td><code>--no-vm</code></td><td>Tree-walker only</td></tr>
-  <tr><td><code>-h</code> / <code>-V</code></td><td>Help / version</td></tr>
-</table>
+    <section id="cli">
+      <h2>CLI Reference Table</h2>
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>cpy &lt;script.cpy&gt;</code></td>
+              <td>Executes a source file.</td>
+            </tr>
+            <tr>
+              <td><code>cpy</code></td>
+              <td>Starts the interactive REPL shell.</td>
+            </tr>
+            <tr>
+              <td><code>cpy -c "&lt;code&gt;"</code></td>
+              <td>Executes inline string code directly.</td>
+            </tr>
+            <tr>
+              <td><code>cpy -v</code>, <code>cpy --version</code></td>
+              <td>Displays version information (1.11.0).</td>
+            </tr>
+            <tr>
+              <td><code>cpy -h</code>, <code>cpy --help</code></td>
+              <td>Prints command line help and arguments list.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="warn">
+      <p><strong>Notice:</strong> Ensure OpenSSL development libraries are available if standard networking modules are built from source.</p>
+    </div>
 
     <footer>
-      <span>cpy 1.11.0 · MIT</span>
-      <span>
-        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
-        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
-      </span>
+      cpy 1.11.0 · MIT · <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> · <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
     </footer>
   </main>
+
 </body>
 </html>

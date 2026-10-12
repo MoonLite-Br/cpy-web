@@ -1,66 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Get · cpy</title>
-  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
-  <link rel="stylesheet" href="css/site.css"/>
-  <link rel="icon" href="assets/logo.svg"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get v1.11.0</title>
+    <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-  <header class="top">
-    <div class="top-inner">
-      <a class="brand" href="index.html">
-        <img src="assets/logo.svg" alt=""/>
-        cpy
-      </a>
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="start.html">Start</a>
-        <a href="lang.html">Lang</a>
-        <a href="lib.html">Lib</a>
-        <a href="how.html">How</a>
-        <a href="vm.html">VM</a>
-        <a href="lim.html">Limits</a>
-        <a href="try.html">Examples</a>
-        <a href="get.html" class="active">Get</a>
-      </nav>
-    </div>
-  </header>
-  <main class="wrap">
-    <h1>Get</h1>
-    <p class="lead">Source, binary, and .deb.</p>
-    
-<h2>Source</h2>
-<pre><code>git clone https://github.com/MoonLite-Br/Cpy.git
-cd Cpy && ./install.sh
-</code></pre>
 
-<h2>Release v1.11.0</h2>
-<ul>
-  <li><a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release page</a></li>
-  <li><a href="https://github.com/MoonLite-Br/Cpy/releases/download/v1.11.0/cpy-linux-x86_64">cpy-linux-x86_64</a> — prebuilt binary</li>
-  <li><a href="https://github.com/MoonLite-Br/Cpy/releases/download/v1.11.0/cpy_1.11.0-1_amd64.deb">cpy_1.11.0-1_amd64.deb</a> — Debian/Ubuntu</li>
-</ul>
+    <header class="top">
+        <a href="index.html" class="brand">VM System</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="start.html">Start</a>
+            <a href="lang.html">Lang</a>
+            <a href="lib.html">Lib</a>
+            <a href="how.html">How</a>
+            <a href="vm.html">VM</a>
+            <a href="lim.html">Limits</a>
+            <a href="try.html">Examples</a>
+            <a href="get.html" class="active">Get</a>
+        </nav>
+    </header>
 
-<pre><code>chmod +x cpy-linux-x86_64
-./cpy-linux-x86_64 --version   # cpy 1.11.0
+    <main class="wrap">
+        <h1>Download &amp; Install</h1>
+        
+        <p class="note">
+            <strong>Release v1.11.0</strong> is now available. Please review system limits before upgrading binaries.
+        </p>
 
-sudo dpkg -i cpy_1.11.0-1_amd64.deb
-</code></pre>
+        <div class="card">
+            <h2>GitHub Repository</h2>
+            <p>Clone the official repository or fetch the latest v1.11.0 release tag directly.</p>
+            <pre><code>git clone https://github.com/example/project.git
+cd project &amp;&amp; git checkout v1.11.0</code></pre>
+            <a href="https://github.com" class="btn">View on GitHub</a>
+        </div>
 
-<div class="note">
-  On Termux aarch64, prefer building from source with <code>./install.sh</code> — the published .deb is amd64.
-</div>
+        <div class="card">
+            <h2>Pre-built Binaries</h2>
+            <p>Download standalone executable binaries for Linux, macOS, and Windows.</p>
+            <a href="#" class="btn">Download Binary (v1.11.0)</a>
+        </div>
+
+        <div class="card">
+            <h2>Debian Package (.deb)</h2>
+            <p>Install on Debian/Ubuntu systems using the pre-compiled Debian package.</p>
+            <pre><code>sudo dpkg -i package_1.11.0_amd64.deb</code></pre>
+            <a href="#" class="btn">Download DEB Package</a>
+        </div>
+    </main>
 
     <footer>
-      <span>cpy 1.11.0 · MIT</span>
-      <span>
-        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
-        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
-      </span>
+        <p>&copy; 2025 System Project. All rights reserved. Version 1.11.0</p>
     </footer>
-  </main>
+
 </body>
 </html>

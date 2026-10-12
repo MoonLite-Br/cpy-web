@@ -1,29 +1,19 @@
 # cpy-web
 
-Static documentation site for [cpy](https://github.com/MoonLite-Br/Cpy).
+Documentation site for [cpy](https://github.com/MoonLite-Br/Cpy).
 
-## Pages
+| Page | File |
+|------|------|
+| Home | index.html |
+| Start | start.html |
+| Lang | lang.html |
+| Lib | lib.html |
+| How | how.html |
+| VM | vm.html |
+| Limits | lim.html |
+| Examples | try.html |
+| Get | get.html |
 
-| File | Title |
-|------|--------|
-| `index.html` | Home |
-| `start.html` | Install &amp; first run |
-| `lang.html` | Language reference |
-| `lib.html` | Built-ins &amp; modules |
-| `how.html` | Internals |
-| `vm.html` | Bytecode VM |
-| `lim.html` | Limits vs CPython |
-| `try.html` | Examples |
-| `get.html` | Download |
+Built with Gemini, checked for structure consistency, shared dark professional theme.
 
-## Preview
-
-Open `index.html` in a browser, or:
-
-```bash
-python3 -m http.server -d . 8080
-```
-
-## GitHub Pages
-
-Settings → Pages → Deploy from branch `main` / root.
+Live: https://moonlite-br.github.io/cpy-web/

@@ -1,71 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>How · cpy</title>
-  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
-  <link rel="stylesheet" href="css/site.css"/>
-  <link rel="icon" href="assets/logo.svg"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cpy Architecture &amp; Internals - How It Works</title>
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 </head>
 <body>
-  <header class="top">
-    <div class="top-inner">
-      <a class="brand" href="index.html">
-        <img src="assets/logo.svg" alt=""/>
-        cpy
-      </a>
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="start.html">Start</a>
-        <a href="lang.html">Lang</a>
-        <a href="lib.html">Lib</a>
-        <a href="how.html" class="active">How</a>
-        <a href="vm.html">VM</a>
-        <a href="lim.html">Limits</a>
-        <a href="try.html">Examples</a>
-        <a href="get.html">Get</a>
-      </nav>
-    </div>
-  </header>
-  <main class="wrap">
-    <h1>How</h1>
-    <p class="lead">How the interpreter is put together.</p>
-    
-<h2>Pipeline</h2>
-<ol>
-  <li><strong>Lexer / parser</strong> — source → AST</li>
-  <li><strong>Resolver</strong> — names bound to local slots, free vars, globals</li>
-  <li><strong>Execution</strong> — tree-walk by default; hot functions may run on the bytecode VM</li>
-  <li><strong>Runtime</strong> — refcounted values, method-dispatch cache, embedded modules</li>
-</ol>
 
-<h2>Name resolution</h2>
-<p>At compile/resolve time, local variables become fixed array indices. That avoids a dict probe on every read/write inside a function — a major reason tight loops feel light compared to a pure dict-based frame.</p>
+    <header class="top">
+        <div class="top-inner">
+            <a href="index.html" class="brand">
+                <img src="assets/logo.svg" alt="cpy logo" width="32" height="32">
+                <span>cpy</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="start.html">Start</a>
+                <a href="lang.html">Lang</a>
+                <a href="lib.html">Lib</a>
+                <a href="how.html" class="active">How</a>
+                <a href="vm.html">VM</a>
+                <a href="lim.html">Limits</a>
+                <a href="try.html">Examples</a>
+                <a href="get.html">Get</a>
+            </nav>
+        </div>
+    </header>
 
-<h2>Generators</h2>
-<p>When <code>ucontext</code> (or the sigaltstack fallback) is available, generators switch stacks in userspace instead of allocating a full OS thread per generator. Without those, a slower thread-based path still works.</p>
+    <main class="wrap">
+        <section class="hero">
+            <span class="tag">Version 1.11.0</span>
+            <h1>How cpy Works Under the Hood</h1>
+            <p>Combining clean Python syntax with raw C speed. Discover the pipeline, execution engines, and low-level architectural optimizations powering cpy.</p>
+            <div class="btns">
+                <a href="vm.html" class="btn btn-primary">Explore VM Internals</a>
+                <a href="get.html" class="btn btn-ghost">Download v1.11.0</a>
+            </div>
+        </section>
 
-<h2>Method cache (1.11+)</h2>
-<p>Attribute nodes can remember the last builtin-type method they resolved (<code>str</code>/<code>list</code>/…). Matching type tags reuse the cached method value on the hot path.</p>
+        <section>
+            <h2>Execution Pipeline Overview</h2>
+            <p>cpy translates high-level Python syntax directly into lean runtime execution through a multi-stage pipeline designed for minimum allocation and maximum speed.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>1. Parsing</h3>
+                    <p>The lexer and parser process code source into a light Abstract Syntax Tree (AST), stripping overhead while maintaining source locations for precise errors.</p>
+                </div>
+                <div class="card">
+                    <h3>2. Scope &amp; Symbol Resolution</h3>
+                    <p>Variables and scopes are resolved ahead of time. Identifiers are mapped to static indices, turning costly runtime hash lookups into instant direct access.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Runtime Dual Engine</h3>
+                    <p>Executes via a fast tree-walk interpreter by default, or delegates to an optional bytecode VM runtime for high-throughput loops and compute-heavy paths.</p>
+                </div>
+            </div>
+        </section>
 
-<h2>Layout of the repo</h2>
-<pre><code>src/         interpreter (C)
-lib/         stdlib modules (.cpy), baked in
-docs/        markdown sources (mirrored here as HTML)
-examples/    sample programs
-tests/       conformance + VM + net + async
-bench/       microbenchmarks
-selfhost/    cpy-in-cpy + AOT sketch
-</code></pre>
+        <section>
+            <h2>Core Architectural Features</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Locals as Fixed Slots</h3>
+                    <p>Instead of dynamic dictionary lookups for local variables, cpy allocates local scopes as contiguous stack slots. Accessing a local is simply a direct offset read.</p>
+                </div>
+                <div class="card">
+                    <h3>Generators via <code>ucontext</code></h3>
+                    <p>Generators and yield operations rely on C system-level context switching using standard <code>ucontext</code> primitives, keeping generator frame suspension lightweight and native.</p>
+                </div>
+                <div class="card">
+                    <h3>Inline Method Cache</h3>
+                    <p>Method dispatch employs a global inline cache. Repeated calls to the same method target bypass dynamic class lookup, matching native struct call performance.</p>
+                </div>
+                <div class="card">
+                    <h3>64-bit Native Integer Engine</h3>
+                    <p>Numeric evaluations use direct native 64-bit signed integers throughout the system, ensuring zero allocation overhead during arithmetic operations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Engine Design Principles</h2>
+            
+            <div class="note">
+                <p><strong>Lightweight Footprint:</strong> To maintain standard C compilation speeds and low binary size, cpy explicitly excludes heavy abstractions like native <code>bytes</code> mutability structures or complex <code>match</code> pattern-matching trees.</p>
+            </div>
+
+            <div class="warn">
+                <p><strong>Optional Bytecode VM:</strong> The optional VM runtime can be toggled at build time. When disabled, cpy falls back entirely to the optimized tree-walk AST runtime.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Repository Layout</h2>
+            <div class="card">
+                <pre><code>cpy/
+├── src/
+│   ├── parse.c      # Lexer, tokenizer, and AST parser
+│   ├── resolve.c    # Symbol tables & static local slot resolution
+│   ├── walk.c       # AST tree-walk interpreter implementation
+│   ├── vm.c         # Optional bytecode VM & execution loop
+│   ├── cache.c      # Global method cache management
+│   └── gen.c        # ucontext-backed generator stack setup
+├── include/         # System & runtime headers
+├── tools/
+│   └── install.sh   # Build and installation script
+└── Makefile         # Build configuration for Clang / GCC</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Portability &amp; Toolchain Requirements</h2>
+            <p>cpy v1.11.0 compiles anywhere a modern C compiler is present. It runs seamlessly on standard Linux, macOS, and mobile environments like <strong>Termux</strong> using basic development tools: <code>clang</code> / <code>gcc</code>, <code>make</code>, and <code>openssl</code> for cryptographic primitives.</p>
+        </section>
+    </main>
 
     <footer>
-      <span>cpy 1.11.0 · MIT</span>
-      <span>
-        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
-        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
-      </span>
+        <p>cpy 1.11.0 · MIT License · <a href="https://github.com" target="_blank" rel="noopener">GitHub Repository</a></p>
     </footer>
-  </main>
+
 </body>
 </html>

@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>cpy docs · cpy</title>
-  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
-  <link rel="stylesheet" href="css/site.css"/>
-  <link rel="icon" href="assets/logo.svg"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cpy - Python syntax, C speed</title>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 </head>
 <body>
   <header class="top">
     <div class="top-inner">
-      <a class="brand" href="index.html">
-        <img src="assets/logo.svg" alt=""/>
-        cpy
-      </a>
+      <a class="brand" href="index.html" class="active"><img src="assets/logo.svg" alt=""/>cpy</a>
       <nav class="nav">
-        <a href="index.html" class="active">Home</a>
+        <a href="index.html">Home</a>
         <a href="start.html">Start</a>
         <a href="lang.html">Lang</a>
         <a href="lib.html">Lib</a>
@@ -29,57 +25,121 @@
     </div>
   </header>
   <main class="wrap">
-    <h1>cpy docs</h1>
-    <p class="lead">Documentation for the cpy language and runtime.</p>
-    
-<section class="hero" style="border:none;margin:0;padding-top:0">
-  <p class="tag" style="margin-top:0">Python-compatible syntax. From-scratch C interpreter. One binary.</p>
-  <div class="btns">
-    <a class="btn btn-primary" href="start.html">Get started</a>
-    <a class="btn btn-ghost" href="get.html">Download</a>
-    <a class="btn btn-ghost" href="https://github.com/MoonLite-Br/Cpy">GitHub</a>
-  </div>
-</section>
+    <section class="hero">
+      <span class="tag">v1.11.0</span>
+      <h1>cpy</h1>
+      <p>Python syntax, C speed.</p>
+      <div class="btns">
+        <a href="start.html" class="btn btn-primary">Start</a>
+        <a href="get.html" class="btn btn-ghost">Get</a>
+        <a href="https://github.com/MoonLite-Br/Cpy" class="btn btn-ghost">GitHub</a>
+      </div>
+    </section>
 
-<div class="card-grid">
-  <a class="card" href="start.html"><strong>Start</strong><span>Install on Linux, Termux, or from a .deb</span></a>
-  <a class="card" href="lang.html"><strong>Lang</strong><span>Syntax, types, classes, async</span></a>
-  <a class="card" href="lib.html"><strong>Lib</strong><span>Built-ins and in-binary modules</span></a>
-  <a class="card" href="how.html"><strong>How</strong><span>Parser, resolver, runtime design</span></a>
-  <a class="card" href="vm.html"><strong>VM</strong><span>Bytecode tier and opcodes</span></a>
-  <a class="card" href="lim.html"><strong>Limits</strong><span>What is not CPython</span></a>
-  <a class="card" href="try.html"><strong>Examples</strong><span>Short programs that run today</span></a>
-  <a class="card" href="get.html"><strong>Get</strong><span>Binaries and source</span></a>
-</div>
+    <div class="note">
+      <p>Lightweight high-performance interpreter combining familiar syntax with tree-walk parsing, VM execution, C3 MRO, and dynamic method caching.</p>
+    </div>
 
-<h2>Why cpy?</h2>
-<table>
-  <tr><th></th><th>CPython</th><th>cpy</th></tr>
-  <tr><td>Implementation</td><td>Large C + stdlib</td><td>~10k lines portable C</td></tr>
-  <tr><td>Dependencies</td><td>Heavy</td><td><code>cc</code> + <code>make</code> (OpenSSL optional)</td></tr>
-  <tr><td>Ship shape</td><td>System install</td><td>Single binary</td></tr>
-  <tr><td>Locals</td><td>Dict lookup</td><td>Array slots after resolve</td></tr>
-  <tr><td>Target</td><td>Desktops &amp; servers</td><td>PC, server, and phone (Termux)</td></tr>
-</table>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Quick Start</h3>
+        <p>Get up and running fast using <code>./install.sh</code> or via Termux on Android.</p>
+        <p><a href="start.html">Get Started &rarr;</a></p>
+      </div>
+      <div class="card">
+        <h3>Language Specs</h3>
+        <p>Explore language mechanics: 64-bit integers, cooperative async, and C3 MRO.</p>
+        <p><a href="lang.html">Language Details &rarr;</a></p>
+      </div>
+      <div class="card">
+        <h3>Standard Library</h3>
+        <p>Built-in routines and essential core utilities for fast execution.</p>
+        <p><a href="lib.html">Explore Library &rarr;</a></p>
+      </div>
+      <div class="card">
+        <h3>How It Works</h3>
+        <p>Understand the underlying pipeline combining a tree-walk parser with a VM.</p>
+        <p><a href="how.html">Architecture &rarr;</a></p>
+      </div>
+      <div class="card">
+        <h3>Virtual Machine</h3>
+        <p>Examine bytecode dispatch, dynamic method caching, and performance tweaks.</p>
+        <p><a href="vm.html">VM Internals &rarr;</a></p>
+      </div>
+      <div class="card">
+        <h3>Limitations</h3>
+        <p>Strict focus on speed: standard 64-bit ints, no bytes, no complex, no match.</p>
+        <p><a href="lim.html">View Limits &rarr;</a></p>
+      </div>
+      <div class="card">
+        <h3>Code Examples</h3>
+        <p>Practical code snippets covering asynchronous tasks, data structures, and classes.</p>
+        <p><a href="try.html">See Examples &rarr;</a></p>
+      </div>
+      <div class="card">
+        <h3>Get Releases</h3>
+        <p>Download ready-to-use binaries and <code>.deb</code> packages directly from GitHub releases.</p>
+        <p><a href="get.html">Download &rarr;</a></p>
+      </div>
+    </div>
 
-<pre><code>from collections import Counter
+    <div class="card">
+      <h2>Counter Example</h2>
+      <pre><code>class Counter:
+    def __init__(self, start=0):
+        self.count = start
 
-class Greeter:
-    def __init__(self, name):
-        self.name = name
-    def greet(self):
-        return f"Hello, {self.name}!"
+    def increment(self):
+        self.count += 1
+        return self.count
 
-print(Greeter("cpy").greet())
-print(Counter("mississippi").most_common(2))
-</code></pre>
+c = Counter(10)
+print(c.increment()) # 11
+print(c.increment()) # 12</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>CPython vs cpy</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>CPython</th>
+            <th>cpy v1.11.0</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Execution Model</td>
+            <td>Bytecode Interpreter</td>
+            <td>Tree-Walk + VM Engine</td>
+          </tr>
+          <tr>
+            <td>Integers</td>
+            <td>Arbitrary Precision</td>
+            <td>64-bit Signed Integers</td>
+          </tr>
+          <tr>
+            <td>Method Resolution</td>
+            <td>Dynamic Dictionary Lookup</td>
+            <td>C3 MRO with Method Cache</td>
+          </tr>
+          <tr>
+            <td>Async Execution</td>
+            <td>asyncio / Event Loop</td>
+            <td>Cooperative Async</td>
+          </tr>
+          <tr>
+            <td>Types Excluded</td>
+            <td>None</td>
+            <td>No bytes, complex, match</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <footer>
-      <span>cpy 1.11.0 · MIT</span>
-      <span>
-        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
-        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
-      </span>
+      <p>cpy 1.11.0 · MIT · <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> · <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a></p>
     </footer>
   </main>
 </body>
