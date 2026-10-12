@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>How · cpy</title>
+  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
+  <link rel="stylesheet" href="css/site.css"/>
+  <link rel="icon" href="assets/logo.svg"/>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt=""/>
+        cpy
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="start.html">Start</a>
+        <a href="lang.html">Lang</a>
+        <a href="lib.html">Lib</a>
+        <a href="how.html" class="active">How</a>
+        <a href="vm.html">VM</a>
+        <a href="lim.html">Limits</a>
+        <a href="try.html">Examples</a>
+        <a href="get.html">Get</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1>How</h1>
+    <p class="lead">How the interpreter is put together.</p>
+    
+<h2>Pipeline</h2>
+<ol>
+  <li><strong>Lexer / parser</strong> — source → AST</li>
+  <li><strong>Resolver</strong> — names bound to local slots, free vars, globals</li>
+  <li><strong>Execution</strong> — tree-walk by default; hot functions may run on the bytecode VM</li>
+  <li><strong>Runtime</strong> — refcounted values, method-dispatch cache, embedded modules</li>
+</ol>
+
+<h2>Name resolution</h2>
+<p>At compile/resolve time, local variables become fixed array indices. That avoids a dict probe on every read/write inside a function — a major reason tight loops feel light compared to a pure dict-based frame.</p>
+
+<h2>Generators</h2>
+<p>When <code>ucontext</code> (or the sigaltstack fallback) is available, generators switch stacks in userspace instead of allocating a full OS thread per generator. Without those, a slower thread-based path still works.</p>
+
+<h2>Method cache (1.11+)</h2>
+<p>Attribute nodes can remember the last builtin-type method they resolved (<code>str</code>/<code>list</code>/…). Matching type tags reuse the cached method value on the hot path.</p>
+
+<h2>Layout of the repo</h2>
+<pre><code>src/         interpreter (C)
+lib/         stdlib modules (.cpy), baked in
+docs/        markdown sources (mirrored here as HTML)
+examples/    sample programs
+tests/       conformance + VM + net + async
+bench/       microbenchmarks
+selfhost/    cpy-in-cpy + AOT sketch
+</code></pre>
+
+    <footer>
+      <span>cpy 1.11.0 · MIT</span>
+      <span>
+        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
+        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      </span>
+    </footer>
+  </main>
+</body>
+</html>

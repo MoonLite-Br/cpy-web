@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Examples · cpy</title>
+  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
+  <link rel="stylesheet" href="css/site.css"/>
+  <link rel="icon" href="assets/logo.svg"/>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt=""/>
+        cpy
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="start.html">Start</a>
+        <a href="lang.html">Lang</a>
+        <a href="lib.html">Lib</a>
+        <a href="how.html">How</a>
+        <a href="vm.html">VM</a>
+        <a href="lim.html">Limits</a>
+        <a href="try.html" class="active">Examples</a>
+        <a href="get.html">Get</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1>Examples</h1>
+    <p class="lead">Paste into a file or the REPL.</p>
+    
+<pre><code># fib-ish generator
+def fib():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+print([n for _, n in zip(range(10), fib())])
+</code></pre>
+
+<pre><code># classes + f-strings
+class Point:
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+    def __repr__(self):
+        return f"Point({self.x}, {self.y})"
+
+print(Point(2, 3))
+</code></pre>
+
+<pre><code># collections
+from collections import Counter
+print(Counter("mississippi").most_common(2))
+</code></pre>
+
+<p class="muted">More in the repo: <code>examples/algorithms.cpy</code>, <code>classes.cpy</code>, <code>wordcount.cpy</code>, <code>fib.cpy</code>, <code>demo.cpy</code>.</p>
+
+    <footer>
+      <span>cpy 1.11.0 · MIT</span>
+      <span>
+        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
+        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      </span>
+    </footer>
+  </main>
+</body>
+</html>

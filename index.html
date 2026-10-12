@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>cpy docs · cpy</title>
+  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
+  <link rel="stylesheet" href="css/site.css"/>
+  <link rel="icon" href="assets/logo.svg"/>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt=""/>
+        cpy
+      </a>
+      <nav class="nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="start.html">Start</a>
+        <a href="lang.html">Lang</a>
+        <a href="lib.html">Lib</a>
+        <a href="how.html">How</a>
+        <a href="vm.html">VM</a>
+        <a href="lim.html">Limits</a>
+        <a href="try.html">Examples</a>
+        <a href="get.html">Get</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1>cpy docs</h1>
+    <p class="lead">Documentation for the cpy language and runtime.</p>
+    
+<section class="hero" style="border:none;margin:0;padding-top:0">
+  <p class="tag" style="margin-top:0">Python-compatible syntax. From-scratch C interpreter. One binary.</p>
+  <div class="btns">
+    <a class="btn btn-primary" href="start.html">Get started</a>
+    <a class="btn btn-ghost" href="get.html">Download</a>
+    <a class="btn btn-ghost" href="https://github.com/MoonLite-Br/Cpy">GitHub</a>
+  </div>
+</section>
+
+<div class="card-grid">
+  <a class="card" href="start.html"><strong>Start</strong><span>Install on Linux, Termux, or from a .deb</span></a>
+  <a class="card" href="lang.html"><strong>Lang</strong><span>Syntax, types, classes, async</span></a>
+  <a class="card" href="lib.html"><strong>Lib</strong><span>Built-ins and in-binary modules</span></a>
+  <a class="card" href="how.html"><strong>How</strong><span>Parser, resolver, runtime design</span></a>
+  <a class="card" href="vm.html"><strong>VM</strong><span>Bytecode tier and opcodes</span></a>
+  <a class="card" href="lim.html"><strong>Limits</strong><span>What is not CPython</span></a>
+  <a class="card" href="try.html"><strong>Examples</strong><span>Short programs that run today</span></a>
+  <a class="card" href="get.html"><strong>Get</strong><span>Binaries and source</span></a>
+</div>
+
+<h2>Why cpy?</h2>
+<table>
+  <tr><th></th><th>CPython</th><th>cpy</th></tr>
+  <tr><td>Implementation</td><td>Large C + stdlib</td><td>~10k lines portable C</td></tr>
+  <tr><td>Dependencies</td><td>Heavy</td><td><code>cc</code> + <code>make</code> (OpenSSL optional)</td></tr>
+  <tr><td>Ship shape</td><td>System install</td><td>Single binary</td></tr>
+  <tr><td>Locals</td><td>Dict lookup</td><td>Array slots after resolve</td></tr>
+  <tr><td>Target</td><td>Desktops &amp; servers</td><td>PC, server, and phone (Termux)</td></tr>
+</table>
+
+<pre><code>from collections import Counter
+
+class Greeter:
+    def __init__(self, name):
+        self.name = name
+    def greet(self):
+        return f"Hello, {self.name}!"
+
+print(Greeter("cpy").greet())
+print(Counter("mississippi").most_common(2))
+</code></pre>
+
+    <footer>
+      <span>cpy 1.11.0 · MIT</span>
+      <span>
+        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
+        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      </span>
+    </footer>
+  </main>
+</body>
+</html>

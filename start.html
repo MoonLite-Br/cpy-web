@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Start · cpy</title>
+  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
+  <link rel="stylesheet" href="css/site.css"/>
+  <link rel="icon" href="assets/logo.svg"/>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt=""/>
+        cpy
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="start.html" class="active">Start</a>
+        <a href="lang.html">Lang</a>
+        <a href="lib.html">Lib</a>
+        <a href="how.html">How</a>
+        <a href="vm.html">VM</a>
+        <a href="lim.html">Limits</a>
+        <a href="try.html">Examples</a>
+        <a href="get.html">Get</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1>Start</h1>
+    <p class="lead">Install cpy and run your first script.</p>
+    
+<h2>Requirements</h2>
+<ul>
+  <li>A C compiler (<code>clang</code> or <code>gcc</code>) and <code>make</code></li>
+  <li>Optional: OpenSSL headers for <code>https://</code> in <code>urllib</code></li>
+</ul>
+
+<h2>Linux / macOS</h2>
+<pre><code># Debian/Ubuntu
+sudo apt install build-essential libssl-dev
+
+git clone https://github.com/MoonLite-Br/Cpy.git
+cd Cpy
+./install.sh          # builds and puts cpy on PATH
+# or: make && ./bin/cpy
+</code></pre>
+
+<h2>Termux (Android)</h2>
+<pre><code>pkg install clang make openssl
+git clone https://github.com/MoonLite-Br/Cpy.git
+cd Cpy
+./install.sh
+</code></pre>
+
+<h2>Debian package</h2>
+<pre><code># from GitHub Releases (amd64)
+sudo dpkg -i cpy_1.11.0-1_amd64.deb
+
+# or build locally
+./scripts/build-deb.sh 1.11.0
+sudo dpkg -i build/cpy_*.deb
+</code></pre>
+
+<h2>First commands</h2>
+<pre><code>cpy                     # REPL
+cpy script.cpy          # run a file (.cpy or .py)
+cpy -c 'print(1 + 2)'
+cpy --version
+</code></pre>
+
+<div class="note">
+  Module search path: set <code>CPY_PATH=dir1:dir2</code>. Force tree-walker only with <code>--no-vm</code> or <code>CPY_NOVM=1</code>.
+</div>
+
+<h2>CLI flags</h2>
+<table>
+  <tr><th>Flag</th><th>Meaning</th></tr>
+  <tr><td><code>-c CODE</code></td><td>Run CODE and exit</td></tr>
+  <tr><td><code>-i</code></td><td>Force REPL</td></tr>
+  <tr><td><code>--no-vm</code></td><td>Tree-walker only</td></tr>
+  <tr><td><code>-h</code> / <code>-V</code></td><td>Help / version</td></tr>
+</table>
+
+    <footer>
+      <span>cpy 1.11.0 · MIT</span>
+      <span>
+        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
+        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      </span>
+    </footer>
+  </main>
+</body>
+</html>

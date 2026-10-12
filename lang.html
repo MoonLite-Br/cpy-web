@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Lang · cpy</title>
+  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
+  <link rel="stylesheet" href="css/site.css"/>
+  <link rel="icon" href="assets/logo.svg"/>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt=""/>
+        cpy
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="start.html">Start</a>
+        <a href="lang.html" class="active">Lang</a>
+        <a href="lib.html">Lib</a>
+        <a href="how.html">How</a>
+        <a href="vm.html">VM</a>
+        <a href="lim.html">Limits</a>
+        <a href="try.html">Examples</a>
+        <a href="get.html">Get</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1>Lang</h1>
+    <p class="lead">Language surface — a practical Python subset.</p>
+    
+<h2>Lexical structure</h2>
+<ul>
+  <li>Indentation defines blocks (tab = 4 columns). Lines inside <code>()[]{}</code> continue; trailing <code>\</code> continues a line.</li>
+  <li>Comments start with <code>#</code>.</li>
+  <li>Numbers: <code>42</code>, <code>1_000</code>, <code>0x1F</code>, <code>0b101</code>, <code>0o17</code>, <code>3.14</code>, <code>1e-3</code>.</li>
+  <li>Strings: quotes, triple quotes, <code>r</code>/<code>f</code> prefixes; escapes <code>\n \t \xHH \uXXXX</code>…</li>
+  <li>Source encoding: UTF-8. Extensions: <code>.cpy</code> or <code>.py</code>.</li>
+</ul>
+
+<h2>Types</h2>
+<table>
+  <tr><th>Type</th><th>Notes</th></tr>
+  <tr><td><code>int</code></td><td>Signed 64-bit; overflow → <code>OverflowError</code></td></tr>
+  <tr><td><code>float</code></td><td>IEEE double</td></tr>
+  <tr><td><code>bool</code></td><td><code>True</code>/<code>False</code> as 0/1</td></tr>
+  <tr><td><code>str</code></td><td>Immutable UTF-8</td></tr>
+  <tr><td><code>list</code> / <code>tuple</code></td><td>Ordered; tuples hashable</td></tr>
+  <tr><td><code>dict</code></td><td>Insertion-ordered</td></tr>
+  <tr><td><code>set</code> / <code>frozenset</code></td><td>Hash sets</td></tr>
+  <tr><td><code>range</code></td><td>Lazy arithmetic sequence</td></tr>
+</table>
+
+<h2>Control flow &amp; functions</h2>
+<ul>
+  <li><code>if / elif / else</code>, <code>while</code>, <code>for … in</code>, <code>break</code>, <code>continue</code></li>
+  <li><code>def</code> with <code>*args</code>, <code>**kwargs</code>, keyword-only params, defaults</li>
+  <li><code>lambda</code>, closures, <code>global</code> / <code>nonlocal</code></li>
+  <li><code>try / except / else / finally</code>, <code>raise</code>, <code>assert</code></li>
+  <li><code>with</code> (multiple managers)</li>
+  <li>Comprehensions: list, set, dict, generator</li>
+  <li>Walrus <code>:=</code>, f-strings including <code>f"{x=}"</code></li>
+</ul>
+
+<h2>Classes</h2>
+<ul>
+  <li>Multiple inheritance, C3 MRO</li>
+  <li><code>@decorator</code>, <code>@property</code>, <code>@staticmethod</code>, <code>@classmethod</code></li>
+  <li>Instance and class attributes; methods bind as usual</li>
+</ul>
+
+<h2>Generators &amp; async</h2>
+<ul>
+  <li><code>yield</code>, <code>yield from</code>, <code>.send</code> / <code>.throw</code> / <code>.close</code></li>
+  <li>Generators use a userspace stack switch (ucontext or sigaltstack) when available</li>
+  <li><code>async def</code> / <code>await</code> with a cooperative event loop (<code>asyncio</code>-style)</li>
+</ul>
+
+<h2>Imports</h2>
+<pre><code>import math
+from collections import Counter
+from . import sibling      # relative inside packages
+</code></pre>
+<p class="muted">Built-in modules are embedded in the binary; extra paths via <code>CPY_PATH</code>.</p>
+
+    <footer>
+      <span>cpy 1.11.0 · MIT</span>
+      <span>
+        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
+        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      </span>
+    </footer>
+  </main>
+</body>
+</html>

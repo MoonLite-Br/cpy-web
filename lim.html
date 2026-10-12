@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Limits · cpy</title>
+  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
+  <link rel="stylesheet" href="css/site.css"/>
+  <link rel="icon" href="assets/logo.svg"/>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt=""/>
+        cpy
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="start.html">Start</a>
+        <a href="lang.html">Lang</a>
+        <a href="lib.html">Lib</a>
+        <a href="how.html">How</a>
+        <a href="vm.html">VM</a>
+        <a href="lim.html" class="active">Limits</a>
+        <a href="try.html">Examples</a>
+        <a href="get.html">Get</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1>Limits</h1>
+    <p class="lead">Honest differences from CPython.</p>
+    
+<h2>Not the same as CPython</h2>
+<table>
+  <tr><th>Area</th><th>cpy behavior</th></tr>
+  <tr><td><code>int</code></td><td>64-bit only; overflow raises (no bigint)</td></tr>
+  <tr><td>Bytes</td><td>No <code>bytes</code> / <code>bytearray</code></td></tr>
+  <tr><td>Numbers</td><td>No <code>complex</code></td></tr>
+  <tr><td>Syntax</td><td>No <code>match</code> / <code>case</code></td></tr>
+  <tr><td>Objects</td><td>No <code>__slots__</code>; metaclasses limited</td></tr>
+  <tr><td>Concurrency</td><td>Cooperative <code>async</code> only (no user OS threads)</td></tr>
+</table>
+
+<div class="note warn">
+  Everyday scripts that stick to the supported subset often run unmodified. Large CPython-only ecosystems (native extensions, full stdlib, packaging tools) are out of scope.
+</div>
+
+<h2>When to use cpy</h2>
+<ul>
+  <li>Small tools and scripts you want as one binary</li>
+  <li>Termux / limited environments</li>
+  <li>Learning interpreters by reading ~10k lines of C</li>
+</ul>
+
+    <footer>
+      <span>cpy 1.11.0 · MIT</span>
+      <span>
+        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
+        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      </span>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Lib · cpy</title>
+  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
+  <link rel="stylesheet" href="css/site.css"/>
+  <link rel="icon" href="assets/logo.svg"/>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt=""/>
+        cpy
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="start.html">Start</a>
+        <a href="lang.html">Lang</a>
+        <a href="lib.html" class="active">Lib</a>
+        <a href="how.html">How</a>
+        <a href="vm.html">VM</a>
+        <a href="lim.html">Limits</a>
+        <a href="try.html">Examples</a>
+        <a href="get.html">Get</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1>Lib</h1>
+    <p class="lead">Built-ins and standard modules shipped inside the binary.</p>
+    
+<h2>Always available</h2>
+<p>These names exist without an import (same idea as CPython builtins):</p>
+<p><code>print</code> <code>len</code> <code>range</code> <code>type</code> <code>isinstance</code> <code>issubclass</code>
+<code>iter</code> <code>next</code> <code>list</code> <code>dict</code> <code>set</code> <code>tuple</code> <code>str</code> <code>int</code> <code>float</code> <code>bool</code>
+<code>abs</code> <code>min</code> <code>max</code> <code>sum</code> <code>sorted</code> <code>reversed</code> <code>enumerate</code> <code>zip</code> <code>map</code> <code>filter</code>
+<code>open</code> <code>input</code> <code>repr</code> <code>hash</code> <code>id</code> <code>callable</code> <code>hasattr</code> <code>getattr</code> <code>setattr</code> <code>delattr</code>
+<code>any</code> <code>all</code> <code>round</code> <code>divmod</code> <code>pow</code> <code>chr</code> <code>ord</code> <code>hex</code> <code>bin</code> <code>oct</code>
+<code>Exception</code> and the usual exception hierarchy…</p>
+<p>Also: <code>read("file")</code> / <code>write("file", text)</code> conveniences.</p>
+
+<h2>In-binary modules</h2>
+<table>
+  <tr><th>Module</th><th>Role</th></tr>
+  <tr><td><code>math</code></td><td>Numeric functions</td></tr>
+  <tr><td><code>random</code></td><td>PRNG</td></tr>
+  <tr><td><code>time</code></td><td>Clocks and sleep</td></tr>
+  <tr><td><code>sys</code></td><td><code>argv</code>, <code>exit</code>, version…</td></tr>
+  <tr><td><code>os</code> / <code>os.path</code></td><td>Filesystem basics</td></tr>
+  <tr><td><code>collections</code></td><td><code>Counter</code>, deque-style helpers…</td></tr>
+  <tr><td><code>itertools</code></td><td>Lazy iterators</td></tr>
+  <tr><td><code>functools</code></td><td><code>partial</code>, reduce-style helpers</td></tr>
+  <tr><td><code>operator</code></td><td>Function forms of operators</td></tr>
+  <tr><td><code>heapq</code> / <code>bisect</code></td><td>Heaps and bisection</td></tr>
+  <tr><td><code>string</code></td><td>Constants / helpers</td></tr>
+  <tr><td><code>json</code></td><td>Load / dump</td></tr>
+  <tr><td><code>socket</code></td><td>TCP/UDP</td></tr>
+  <tr><td><code>urllib</code></td><td>HTTP client</td></tr>
+  <tr><td><code>ssl</code></td><td>TLS (when built with OpenSSL)</td></tr>
+  <tr><td><code>asyncio</code></td><td>Cooperative event loop</td></tr>
+</table>
+
+<div class="note">
+  Module sources live under <code>lib/*.cpy</code> and are baked into the binary via <code>tools/gen_stdlib.sh</code> → <code>src/stdlib_data.c</code>.
+</div>
+
+    <footer>
+      <span>cpy 1.11.0 · MIT</span>
+      <span>
+        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
+        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      </span>
+    </footer>
+  </main>
+</body>
+</html>

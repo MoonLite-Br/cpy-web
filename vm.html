@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>VM · cpy</title>
+  <meta name="description" content="cpy — Python syntax, C speed. Documentation."/>
+  <link rel="stylesheet" href="css/site.css"/>
+  <link rel="icon" href="assets/logo.svg"/>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt=""/>
+        cpy
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="start.html">Start</a>
+        <a href="lang.html">Lang</a>
+        <a href="lib.html">Lib</a>
+        <a href="how.html">How</a>
+        <a href="vm.html" class="active">VM</a>
+        <a href="lim.html">Limits</a>
+        <a href="try.html">Examples</a>
+        <a href="get.html">Get</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1>VM</h1>
+    <p class="lead">Optional bytecode tier next to the tree-walker.</p>
+    
+<h2>Two execution engines</h2>
+<p>cpy always has a <strong>tree-walker</strong>. A <strong>register-style bytecode VM</strong> can take over for eligible functions. Results must match: the test suite compares tree-walk vs VM on every fixture.</p>
+<pre><code>cpy script.cpy          # VM allowed
+cpy --no-vm script.cpy  # tree-walker only
+CPY_NOVM=1 cpy script.cpy
+</code></pre>
+
+<h2>What the VM is for</h2>
+<ul>
+  <li>Dense arithmetic and tight loops without walking AST nodes every step</li>
+  <li>Still the same runtime values, exceptions, and tracebacks</li>
+</ul>
+
+<h2>Safety</h2>
+<p><code>tests/vm_fuzz.py</code> and related harnesses randomly exercise agreement between engines. Prefer filing a bug if you ever see divergence.</p>
+
+<div class="note">
+  Full opcode-level notes live in the upstream <code>docs/vm.md</code> in the GitHub repo; this page is the short tour.
+</div>
+
+    <footer>
+      <span>cpy 1.11.0 · MIT</span>
+      <span>
+        <a href="https://github.com/MoonLite-Br/Cpy">GitHub</a> ·
+        <a href="https://github.com/MoonLite-Br/Cpy/releases/tag/v1.11.0">Release</a>
+      </span>
+    </footer>
+  </main>
+</body>
+</html>
