@@ -234,3 +234,76 @@ footer a:hover {
   color: var(--accent);
   text-decoration: underline;
 }
+
+
+/* Logo sizing — keep nav icon compact on all devices */
+.brand img,
+.brand svg,
+.logo,
+.logo-icon,
+header img[src*="logo"],
+nav img[src*="logo"] {
+  width: 1.75rem;   /* 28px */
+  height: 1.75rem;
+  max-width: 1.75rem;
+  max-height: 1.75rem;
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* Prefer real logo over decorative ::before dot when img present */
+.brand:has(img)::before {
+  display: none;
+}
+
+/* Avoid double class / overflow on small screens */
+.top, header.top, .site-header {
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.65rem 1rem;
+}
+.nav {
+  flex-wrap: wrap;
+  gap: 0.15rem 0.75rem;
+  max-width: 100%;
+}
+.brand {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+/* Hero images / banners if any */
+.hero img,
+img.banner,
+img[src*="banner"] {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 12rem;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 720px) {
+  .brand img,
+  .brand svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    max-width: 1.5rem;
+    max-height: 1.5rem;
+  }
+  .nav {
+    width: 100%;
+    gap: 0.1rem 0.5rem;
+  }
+  .nav a {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.45rem;
+  }
+  .top, header.top {
+    padding: 0.55rem 0.85rem;
+  }
+}
+
